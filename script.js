@@ -43,21 +43,26 @@ class Table {
         this.filas = filas ;
         this.columnas = columnas;
         this.tabla = new Array(filas)
-                    .fill(new Array(columnas).fill(new Celula()));
+                    .fill(new Array(columnas).fill(0))
+                    .map((filas,i)=>filas.map((columnas,k)=>new Celula(this.generar_random(),i,k,0,0)));
+
     }
-    generar_tabla(){
-        let numRandom= Math.round(Math.random)
+    generar_random(){
+        let numRandom= Math.round(Math.random())
+        return numRandom;
+    }
+    mostrar_tabla (){
+        for(let i = 0; i < this.filas;i++ ){
+            for(let j = 0 ; j < this.columnas;j++)
+            {
+                console.log (this.tabla[i][j]);
+            }
+        }
     }
 
-    
 
 }
-class Juego{
 
-    constructor(Table){
-
-    }
-}
 
 const tabla = new Table(4,3);
-console.log(tabla.tabla);
+console.log(JSON.stringify(tabla.mostrar_tabla()));
