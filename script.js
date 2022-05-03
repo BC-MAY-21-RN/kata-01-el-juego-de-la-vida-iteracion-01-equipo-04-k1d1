@@ -23,10 +23,15 @@ class Celula {
         return this.limites;
     }
     
-    escuchar_estado(estadoCelula ,cantVecinos){
-
-        if (cantVecinos < 2){
-            this.estadoCelula = 0;
+    escuchar_estado(cantVecinos){
+        if (cantVecinos < 2 && this.estado == 1){
+            this.estado = 0;
+        } else if (cantVecinos > 3 && this.estado == 1){
+            this.estado = 0;
+        } else if ((cantVecinos === 3 || cantVecinos === 2) && this.estado == 1){
+            this.estado = 1;
+        } else if (cantVecinos == 3 && this.estado == 0){
+            this.estado = 1;
         }
 
     }
@@ -37,7 +42,8 @@ class Table {
     {
         this.filas = filas ;
         this.columnas = columnas;
-
+        this.tabla = new Array(filas)
+                    .fill(new Array(columnas).fill(new Celula(0,0,0,0,0)));
     }
 
     
@@ -49,3 +55,6 @@ class Juego{
 
     }
 }
+
+const tabla = new Table(4,3);
+console.log(tabla.tabla);
