@@ -1,0 +1,19 @@
+{
+  "name": "kata-01-el-juego-de-la-vida-iteracion-01-equipo-04-k1d1",
+  "version": "1.0.0",
+  "description": "El juego de la vida Desafio 01",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BC-MAY-21-RN/kata-01-el-juego-de-la-vida-iteracion-01-equipo-04-k1d1.git"
+  },
+  "author": "Valentin Ruggieri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BC-MAY-21-RN/kata-01-el-juego-de-la-vida-iteracion-01-equipo-04-k1d1/issues"
+  },
+  "homepage": "https://github.com/BC-MAY-21-RN/kata-01-el-juego-de-la-vida-iteracion-01-equipo-04-k1d1#readme"
+}

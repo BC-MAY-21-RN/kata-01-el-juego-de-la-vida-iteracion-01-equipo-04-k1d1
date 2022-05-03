@@ -31,5 +31,7 @@ class Table {
 }
 class Juego{
 
-    constructor(Table)
+    constructor(Table){
+
+    }
 }
