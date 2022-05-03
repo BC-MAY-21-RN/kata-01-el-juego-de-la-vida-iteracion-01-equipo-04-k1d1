@@ -43,7 +43,10 @@ class Table {
         this.filas = filas ;
         this.columnas = columnas;
         this.tabla = new Array(filas)
-                    .fill(new Array(columnas).fill(new Celula(0,0,0,0,0)));
+                    .fill(new Array(columnas).fill(new Celula()));
+    }
+    generar_tabla(){
+        let numRandom= Math.round(Math.random)
     }
 
     
