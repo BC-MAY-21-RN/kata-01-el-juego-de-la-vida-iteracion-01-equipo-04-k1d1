@@ -52,17 +52,11 @@ class Table {
         return numRandom;
     }
     mostrar_tabla (){
-        for(let i = 0; i < this.filas;i++ ){
-            for(let j = 0 ; j < this.columnas;j++)
-            {
-                console.log (this.tabla[i][j]);
-            }
-        }
+        this.tabla.forEach(fila => console.log(fila.map(columna => columna.get_estado() ? '*' : '.').join('')));
     }
-
 
 }
 
 
-const tabla = new Table(4,3);
-console.log(JSON.stringify(tabla.mostrar_tabla()));
+const tabla = new Table(4,4);
+tabla.mostrar_tabla()
