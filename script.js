@@ -1,62 +1,81 @@
+// Clase Celula
+// Atributos: Estado - Posicion en X - Posicion en Y - Limites - Cantidad de vecinos
+// Metodos: Mostrar estado - Modificar estado - Mostrar posicion XY - Mostrar limites - Escuchar estado
 
 class Celula {
-    constructor(estado,x,y,limites,cantv){
-        this.estado=estado;
-        this.x=x;
-        this.y=y;
-        this.limites= limites;
-        this.cantv = cantv;
+  constructor(estado, xPosition, yPosition, limites, cantVecinos) {
+    this.estado = estado;
+    this.xPosition = xPosition;
+    this.yPosition = yPosition;
+    this.limites = limites;
+    this.cantVecinos = cantVecinos;
+  }
 
-    }
-    
-    get_estado(){
+  // Metodo de la clase que muestra el valor del estado de la celula
+  getState() {
+    return this.estado; //Devueleve el estado: 1- Si esta vivo 0-Si esta muerto
+  }
 
-        return this.estado; //Devueleve el estado: 1- Si esta vivo 0-Si esta muerto
-    }
-    set_estado(nuevo_estado){
-        this.estado = nuevo_estado;
-    }    
-    get_position(){
-        console.log("["+this.x+" , "+this.y+"]");
-    }
-    get_limites(){
-        return this.limites;
-    }
-    
-    escuchar_estado(cantVecinos){
-        if (cantVecinos < 2 && this.estado == 1){
-            this.estado = 0;
-        } else if (cantVecinos > 3 && this.estado == 1){
-            this.estado = 0;
-        } else if ((cantVecinos === 3 || cantVecinos === 2) && this.estado == 1){
-            this.estado = 1;
-        } else if (cantVecinos == 3 && this.estado == 0){
-            this.estado = 1;
-        }
+  // Metodo de la clase que modifica el estado de la celula
+  setState(newState) {
+    this.estado = newState;
+  }
 
-    }
-    
-}
-class Table {
-    constructor (filas, columnas)
-    {
-        this.filas = filas ;
-        this.columnas = columnas;
-        this.tabla = new Array(filas)
-                    .fill(new Array(columnas).fill(0))
-                    .map((filas,i)=>filas.map((columnas,k)=>new Celula(this.generar_random(),i,k,0,0)));
+  // Metodo de la clase que muestra la posicion en X e Y de la celula 
+  getPositionXY() {
+    console.log(`[ ${this.xPosition} , ${this.yPosition} ]`);
+  }
 
-    }
-    generar_random(){
-        let numRandom= Math.round(Math.random())
-        return numRandom;
-    }
-    mostrar_tabla (){
-        this.tabla.forEach(fila => console.log(fila.map(columna => columna.get_estado() ? '*' : '.').join('')));
-    }
+  // Metodo de la clase que muestra los limites de la celula
+  getLimits() {
+    return this.limites;
+  }
 
+  // Metodo de la clase que evalua el valor de su estado segun la cantidad de vecinos que posea
+  escuchar_estado(cantVecinos) {
+    if (cantVecinos < 2 && this.estado == 1) {
+      this.estado = 0;
+    } else if (cantVecinos > 3 && this.estado == 1) {
+      this.estado = 0;
+    } else if ((cantVecinos === 3 || cantVecinos === 2) && this.estado == 1) {
+      this.estado = 1;
+    } else if (cantVecinos == 3 && this.estado == 0) {
+      this.estado = 1;
+    }else {
+        console.log("El parametro obtenido no pertenece a ningun caso ");
+    }
+  }
 }
 
+// Clase tablero 
+// Atributos: Filas - Columnas
+// Metodos: Mostrar tablero - Generar estado aleatorio
 
-const tabla = new Table(4,4);
-tabla.mostrar_tabla()
+class Tablero {
+  constructor(filas, columnas) {  
+    this.filas = filas;
+    this.columnas = columnas;
+    this.estructura = new Array(filas)
+      .fill(new Array(columnas).fill(0))
+      .map((filas, i) =>
+        filas.map((columnas, k) => new Celula(this.randomState(), i, k, 0, 0))
+      );
+  }
+
+  // Metodo de clase que genera un estado de la celula aleatoriamente (0 => muerto , 1 => vivo)
+  randomState() {
+    return Math.round(Math.random());
+  }
+
+  // Metodo de la clase que muestra el tablero por consola
+  getTablero() {
+    this.estructura.forEach((fila) =>
+      console.log(
+        fila.map((columna) => (columna.getState() ? "*" : ".")).join("")
+      )
+    );
+  }
+}
+
+const tabla = new Tablero(4, 4);
+tabla.getTablero();
